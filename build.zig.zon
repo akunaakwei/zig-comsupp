@@ -1,0 +1,30 @@
+.{
+    .name = .comsupp,
+    .version = "0.4.15",
+    .fingerprint = 0xebb82a7603691ae0, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.14.0",
+    .dependencies = .{
+        .reactos = .{
+            .url = "https://github.com/reactos/reactos/archive/refs/tags/0.4.15-release.tar.gz",
+            .hash = "N-V-__8AACBhuBkqVdxuRiSf6_ltclNxKQg9aU0fnSm9wgml",
+        },
+        .patch = .{
+            .path = "../zig-patch",
+        },
+    },
+
+    // Specifies the set of files and directories that are included in this package.
+    // Only files and directories listed here are included in the `hash` that
+    // is computed for this package. Only files listed here will remain on disk
+    // when using the zig package manager. As a rule of thumb, one should list
+    // files required for compilation plus any license(s).
+    // Paths are relative to the build root. Use the empty string (`""`) to refer to
+    // the build root itself.
+    // A directory listed here means that all files within, recursively, are included.
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "LICENSE",
+        "patch",
+    },
+}
