@@ -10,7 +10,7 @@
         },
         .patch = .{
             .url = "https://github.com/akunaakwei/zig-patch/archive/01eedd80cdcbb0e19050f47de85369d749e2bf72.tar.gz",
-            .hash = "patch-2.6.1-po1jOVttAADGJ4pulhZmAqn3dUU7OIoYATvE5wC4noFB",
+            .hash = "patch-2.6.1-po1jOTtuAACryi5UWeoraHP4f0s5uMxYAY8qufUEqsK4",
         },
     },
 
