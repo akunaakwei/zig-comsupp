@@ -7,6 +7,8 @@ pub fn build(b: *std.Build) void {
     const native_target = b.resolveTargetQuery(.{});
     const optimize = b.standardOptimizeOption(.{});
 
+    const linkage = b.option(std.builtin.LinkMode, "linkage", "Linkage type for the library") orelse .static;
+
     const reactos_dep = b.dependency("reactos", .{});
 
     const comsupp_patch = PatchStep.create(b, .{
@@ -18,10 +20,13 @@ pub fn build(b: *std.Build) void {
     comsupp_patch.addPatch(b.path("patch/0001-remove-comdef.patch"));
     const comsupp_dir = comsupp_patch.getDirectory();
 
-    const comsupp = b.addStaticLibrary(.{
+    const comsupp = b.addLibrary(.{
         .name = "comsupp",
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .target = target,
+            .optimize = optimize,
+        }),
+        .linkage = linkage,
     });
     comsupp.addCSourceFiles(.{
         .root = comsupp_dir,
